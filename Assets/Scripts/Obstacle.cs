@@ -9,12 +9,10 @@ public class Obstacle : MonoBehaviour
     
     public void Move()
     {
-        Debug.Log("work");
         float positionY = gameObject.transform.position.y;
         float positionX = gameObject.transform.position.x;
         positionY -= distance;
         gameObject.transform.position = new Vector2(positionX, positionY);
-
     }
 
     private void Update()
