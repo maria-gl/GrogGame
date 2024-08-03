@@ -55,13 +55,16 @@ public class EventHandler : MonoBehaviour
         if (!isGameOver && isGameStarted && !isGamePaused)
         {
             Vector2 position = Camera.main.ScreenToWorldPoint(touchControl.Touch.TouchPosition.ReadValue<Vector2>());
-            if (position.x <= 0)
+            if (position.y < 3.75)
             {
-                OnTapLeft();
-            }
-            else
-            {
-                OnTapRight();
+                if (position.x <= 0)
+                {
+                    OnTapLeft();
+                }
+                else
+                {
+                    OnTapRight();
+                }
             }
         }
     }
