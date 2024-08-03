@@ -10,12 +10,10 @@ public class Timer : MonoBehaviour
     public float timeVariable = 60f;
     public float maxTime; 
     public UnityEvent TimeRunOut;
-    
 
     void Start()
     {
         maxTime = timeVariable;
-        Time.timeScale = 1;
     }
 
     void Update()
@@ -30,13 +28,13 @@ public class Timer : MonoBehaviour
         }
     }
 
-    void SubtractTime(float time) 
+    public void SubtractTime(float time) 
     {
         timeVariable -= time;
         timeLeft.fillAmount = timeVariable / maxTime;
     }
 
-    void AddTime(float time) 
+    public void AddTime(float time) 
     {
         timeVariable += time;
         timeVariable = Mathf.Clamp(timeVariable, 0, 60f);

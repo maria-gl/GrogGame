@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EventHandler
   - Obstacle
+  - TimeManager
   layers:
   - Default
   - TransparentFX

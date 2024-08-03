@@ -10,10 +10,15 @@ public class EventHandler : MonoBehaviour
 {
     public EventHandler eventHandler;
     private TouchControl touchControl;
+    public GameObject StartMenu;
+
     public UnityEvent TapLeft;
     public UnityEvent TapRight;
-    public bool isGameOver = false;
     public UnityEvent GameOver;
+
+    public bool isGameOver = false;
+    public bool isGameStarted = false;
+    public bool isGamePaused = false;
 
     private void Awake()
     {
@@ -34,11 +39,20 @@ public class EventHandler : MonoBehaviour
     private void Start()
     {
         touchControl.Touch.Touch.started += context => Tap();
+        StartMenu.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void Tap()
     {
-        if (!isGameOver)
+        if (!isGameStarted && !isGamePaused)
+        {
+            isGameStarted = true;
+            Time.timeScale = 1;
+            StartMenu.SetActive(false);
+        }
+
+        if (!isGameOver && isGameStarted && !isGamePaused)
         {
             Vector2 position = Camera.main.ScreenToWorldPoint(touchControl.Touch.TouchPosition.ReadValue<Vector2>());
             if (position.x <= 0)
@@ -74,6 +88,12 @@ public class EventHandler : MonoBehaviour
         Time.timeScale = 0;
 
         GameOver.Invoke();
+    }
+
+    public void Pause(bool b) 
+    {
+        Debug.Log(b);
+        isGamePaused = b;
     }
 
     public void Reset()

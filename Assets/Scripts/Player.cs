@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public UnityEvent gameStart;
     public bool isGameOver = false;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
     {
         if(gameObject.transform.position.y <= losePosition && !isGameOver)
         {
-            isGameOver = true;
+            isGameOver = true; 
             gameOver.Invoke();
         }
     }

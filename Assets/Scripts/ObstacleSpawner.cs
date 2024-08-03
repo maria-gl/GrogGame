@@ -104,7 +104,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         if (spawnBonus) 
         {
-            Instantiate(bonus, obstaclePositions[position].transform.position + new Vector3(0, 0.01f), Quaternion.identity);
+            Instantiate(bonus, obstaclePositions[position].transform.position + new Vector3(0, -0.75f), Quaternion.identity);
         }
     }
 

@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Star : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float timeBonus = 5f;
+    public UnityEvent<float> addTime;
+
+    private void Start()
     {
-        
+        addTime.AddListener(GameObject.FindGameObjectWithTag("TimeManager").GetComponent<Timer>().AddTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            addTime.Invoke(timeBonus);
+            Destroy(gameObject);
+        }
     }
 }
