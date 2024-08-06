@@ -7,6 +7,12 @@ public class Star : MonoBehaviour
 {
     public float timeBonus = 5f;
     public UnityEvent<float> addTime;
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -17,6 +23,7 @@ public class Star : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            audioManager.PlaySound(audioManager.collect);
             addTime.Invoke(timeBonus);
             Destroy(gameObject);
         }

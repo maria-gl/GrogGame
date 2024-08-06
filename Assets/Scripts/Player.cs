@@ -15,11 +15,14 @@ public class Player : MonoBehaviour
     public UnityEvent gameStart;
     public bool isGameOver = false;
 
+    private AudioManager audioManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
         gameStart.Invoke();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
     {
         if(gameObject.transform.position.y <= losePosition && !isGameOver)
         {
+            audioManager.PlaySound(audioManager.death);
             isGameOver = true; 
             gameOver.Invoke();
         }

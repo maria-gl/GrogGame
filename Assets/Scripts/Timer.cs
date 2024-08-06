@@ -11,6 +11,8 @@ public class Timer : MonoBehaviour
     public float maxTime; 
     public UnityEvent TimeRunOut;
 
+    private bool invokedOnce = false;
+
     void Start()
     {
         maxTime = timeVariable;
@@ -24,7 +26,11 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            TimeRunOut.Invoke();
+            if (!invokedOnce)
+            {
+                TimeRunOut.Invoke();
+                invokedOnce = true;
+            }
         }
     }
 

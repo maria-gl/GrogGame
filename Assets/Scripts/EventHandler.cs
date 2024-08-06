@@ -20,10 +20,13 @@ public class EventHandler : MonoBehaviour
     public bool isGameStarted = false;
     public bool isGamePaused = false;
 
+    private AudioManager audioManager;
+
     private void Awake()
     {
         eventHandler = this;
         touchControl = new TouchControl();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void OnEnable()
@@ -57,6 +60,7 @@ public class EventHandler : MonoBehaviour
             Vector2 position = Camera.main.ScreenToWorldPoint(touchControl.Touch.TouchPosition.ReadValue<Vector2>());
             if (position.y < 3.75)
             {
+                audioManager.PlaySound(audioManager.jump);
                 if (position.x <= 0)
                 {
                     OnTapLeft();
@@ -87,6 +91,7 @@ public class EventHandler : MonoBehaviour
 
     public void OnGameOver()
     {
+        audioManager.PlaySound(audioManager.death);
         isGameOver = true;
         Time.timeScale = 0;
 
