@@ -42,7 +42,19 @@ public class Timer : MonoBehaviour
 
     public void AddTime(float time) 
     {
-        timeVariable += time;
+        int r = Random.Range(1, 11);
+        float n;
+        if (r < 9)
+        {
+            n = 0.25f;
+        }
+        else 
+        {
+            n = 0.75f;
+        }
+
+
+        timeVariable += (maxTime - timeVariable) * n;
         timeVariable = Mathf.Clamp(timeVariable, 0, 60f);
 
         timeLeft.fillAmount = timeVariable / 60f;
